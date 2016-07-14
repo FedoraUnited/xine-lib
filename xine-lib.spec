@@ -10,7 +10,7 @@
 Summary:        A multimedia engine
 Name:           xine-lib
 Version:        1.2.6
-Release:        9%{?dist}
+Release:        10%{?dist}
 License:        GPLv2+
 URL:            http://www.xine-project.org/
 Source0:        http://downloads.sourceforge.net/xine/xine-lib-%{version}.tar.xz
@@ -37,7 +37,7 @@ BuildRequires:  libXinerama-devel
 BuildRequires:  libXvMC-devel
 BuildRequires:  libGLU-devel
 BuildRequires:  libv4l-devel
-BuildRequires:  libxcb-devel
+# BuildRequires:  libxcb-devel
 BuildRequires:  libva-devel
 BuildRequires:  libvdpau-devel
 # Video
@@ -77,6 +77,9 @@ BuildRequires:  pkgconfig(libpulse)
 BuildRequires:  gtk2-devel
 BuildRequires:  libsmbclient-devel
 
+BuildRequires:	autoconf automake libtool
+BuildRequires: 	esound-devel
+
 
 %description
 This package contains the Xine library.  It can be used to play back
@@ -110,32 +113,80 @@ This package contains extra plugins for %{name}:
 %patch1 -p1 -b .multilib
 %patch2 -p1 -b .ffmpeg_2.9
 
+sed -i -e '/define VDR_ABS_FIFO_DIR/s|".*"|"/var/vdr/xine"|' src/vdr/input_vdr.c 
+
+	for x in 0 1 2 3; do
+		sed -i -e "/^O${x}_CFLAGS=\"-O${x}\"/d" configure || die
+	done
 
 %build
 export SDL_CFLAGS="$(sdl-config --cflags)" SDL_LIBS="$(sdl-config --libs)"
 # Keep list of options in mostly the same order as ./configure --help.
 %configure \
-    --disable-dependency-tracking \
-    --enable-ipv6 \
-    --enable-v4l2 \
-    --enable-libv4l \
-    --enable-xvmc \
-    --disable-gnomevfs \
-%if 0%{?_with_freetype:1}
-%if 0%{?_with_antialiasing:1}
-    --enable-antialiasing \
-%endif # antialiasing
-    --with-freetype \
-    --with-fontconfig \
-%endif # freetype
-    --with-caca \
-    --with-external-dvdnav \
-    --with-xv-path=%{_libdir} \
-    --with-libflac \
-    --without-esound \
-    --with-wavpack \
-    --with-real-codecs-path=%{codecdir} \
-    --with-w32-path=%{codecdir}
+	        --enable-static=no \
+	        --enable-shared=yes \
+	        --enable-fast-install=yes \
+	        \
+	        --enable-oss \
+	        --enable-aalib \
+	        --disable-dha-kmod \
+	        --enable-dxr3 \
+	        --enable-fb \
+	        --enable-opengl \
+	        --enable-glu \
+	        --disable-vidix \
+	        --enable-xinerama \
+	        --enable-xvmc \
+	        --enable-vdpau \
+	        --disable-vaapi \
+	        --enable-dvb \
+	        --enable-samba \
+	        --enable-v4l2 \
+	        --enable-libv4l \
+	        --enable-vcd \
+	        --enable-vdr \
+	        --enable-bluray \
+	        --enable-avformat \
+	        --enable-a52dec \
+	        --enable-asf \
+	        --enable-nosefart \
+	        --enable-faad \
+	        --enable-gdkpixbuf \
+	        --enable-libjpeg \
+	        --enable-dts \
+	        --enable-mad \
+	        --enable-modplug \
+	        --enable-libmpeg2new \
+	        --enable-musepack \
+	        --enable-mng \
+	        --enable-vpx \
+	        \
+	        --with-freetype \
+		--enable-antialiasing \
+	        --with-fontconfig \
+	        --with-x \
+	        --with-alsa \
+	        --with-esound \
+	        --without-fusionsound \
+	        --with-jack \
+	        --with-pulseaudio \
+	        --with-caca \
+	        --without-linux-path \
+	        --without-libstk \
+	        --with-sdl \
+	        --without-xcb \
+	        --with-imagemagick \
+	        --with-libflac \
+	        --with-speex \
+	        --with-theora \
+	        --with-vorbis \
+	        --with-wavpack \
+		--with-external-dvdnav \
+		--disable-gnomevfs \
+		--enable-ipv6 \
+    		--with-real-codecs-path=%{codecdir} \
+ 		--with-xv-path=%{_libdir} \
+    		--with-w32-path=%{codecdir}
 
 # Remove rpath
 sed -i 's|^hardcode_libdir_flag_spec=.*|hardcode_libdir_flag_spec=""|g' libtool
@@ -166,7 +217,7 @@ mkdir -p $RPM_BUILD_ROOT%{codecdir}
 %files -f libxine2.lang
 %doc AUTHORS COPYING COPYING.LIB CREDITS ChangeLog* README TODO
 %doc __docs/README.* __docs/faq.*
-%doc doc/README.dxr3 doc/README.network_dvd
+# doc doc/README.dxr3 doc/README.network_dvd
 %dir %{codecdir}/
 %{_datadir}/xine-lib/
 %{_libdir}/libxine.so.*
@@ -292,19 +343,20 @@ mkdir -p $RPM_BUILD_ROOT%{codecdir}
 %{_libdir}/xine/plugins/%{plugin_abi}/xineplug_vo_out_opengl.so
 %{_libdir}/xine/plugins/%{plugin_abi}/xineplug_vo_out_opengl2.so
 %{_libdir}/xine/plugins/%{plugin_abi}/xineplug_vo_out_raw.so
-%{_libdir}/xine/plugins/%{plugin_abi}/xineplug_vo_out_vaapi.so
+# {_libdir}/xine/plugins/%{plugin_abi}/xineplug_vo_out_vaapi.so
 %{_libdir}/xine/plugins/%{plugin_abi}/xineplug_vo_out_vdpau.so
 %if %{have_vidix}
 %{_libdir}/xine/plugins/%{plugin_abi}/xineplug_vo_out_vidix.so
 %endif # vidix
-%{_libdir}/xine/plugins/%{plugin_abi}/xineplug_vo_out_xcbshm.so
-%{_libdir}/xine/plugins/%{plugin_abi}/xineplug_vo_out_xcbxv.so
+# {_libdir}/xine/plugins/%{plugin_abi}/xineplug_vo_out_xcbshm.so
+# {_libdir}/xine/plugins/%{plugin_abi}/xineplug_vo_out_xcbxv.so
 %{_libdir}/xine/plugins/%{plugin_abi}/xineplug_vo_out_xshm.so
 %{_libdir}/xine/plugins/%{plugin_abi}/xineplug_vo_out_xv.so
 %{_libdir}/xine/plugins/%{plugin_abi}/xineplug_vo_out_xvmc.so
 %{_libdir}/xine/plugins/%{plugin_abi}/xineplug_vo_out_xxmc.so
 %{_libdir}/xine/plugins/%{plugin_abi}/xineplug_wavpack.so
 %{_libdir}/xine/plugins/%{plugin_abi}/xineplug_xiph.so
+%{_libdir}/xine/plugins/%{plugin_abi}/xineplug_ao_out_esd.so
 
 %files extras
 %{_libdir}/xine/plugins/%{plugin_abi}/xineplug_ao_out_jack.so
@@ -315,6 +367,7 @@ mkdir -p $RPM_BUILD_ROOT%{codecdir}
 %{_libdir}/xine/plugins/%{plugin_abi}/xineplug_vo_out_aa.so
 %{_libdir}/xine/plugins/%{plugin_abi}/xineplug_vo_out_caca.so
 %{_libdir}/xine/plugins/%{plugin_abi}/xineplug_vo_out_sdl.so
+%{_libdir}/xine/plugins/%{plugin_abi}/xineplug_decode_mpeg2new.so
 
 %files devel
 %doc __docs/hackersguide/*
@@ -330,6 +383,12 @@ mkdir -p $RPM_BUILD_ROOT%{codecdir}
 
 
 %changelog
+
+* Thu Jul 07 2016 David Vásquez <davidjeremias82 AT gmail DOT com> 1.2.6-10
+- Rebuilt for FFmpeg 3.1
+- Disabled xcb 
+- Enabled esound
+
 * Sun May 01 2016 Sérgio Basto <sergio@serjux.com> - 1.2.6-9
 - Add patch to build with ffmpeg3
 
