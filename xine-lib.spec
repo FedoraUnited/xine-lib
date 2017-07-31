@@ -10,7 +10,7 @@
 Summary:        A multimedia engine
 Name:           xine-lib
 Version:        1.2.8
-Release:        6%{?dist}
+Release:        7%{?dist}
 License:        GPLv2+
 URL:            http://www.xine-project.org/
 Source0:        http://downloads.sourceforge.net/xine/xine-lib-%{version}.tar.xz
@@ -346,7 +346,7 @@ mkdir -p $RPM_BUILD_ROOT%{codecdir}
 
 %changelog
 
-* Mon Jul 31 2017 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.2.8-6  
+* Mon Jul 31 2017 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.2.8-7  
 - Automatic Mass Rebuild
 
 * Tue Apr 18 2017 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.2.8-5  
