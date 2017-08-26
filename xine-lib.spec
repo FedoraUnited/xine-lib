@@ -10,10 +10,11 @@
 Summary:        A multimedia engine
 Name:           xine-lib
 Version:        1.2.8
-Release:        7%{?dist}
+Release:        9%{?dist}
 License:        GPLv2+
 URL:            http://www.xine-project.org/
 Source0:        http://downloads.sourceforge.net/xine/xine-lib-%{version}.tar.xz
+Patch:		xine-lib-1.2.8-imagemagick7.patch
 
 Provides:         xine-lib(plugin-abi) = %{plugin_abi}
 %{?_isa:Provides: xine-lib(plugin-abi)%{?_isa} = %{plugin_abi}}
@@ -106,6 +107,10 @@ This package contains extra plugins for %{name}:
 
 %prep
 %setup -q
+
+%if 0%{?fedora} >= 28
+%patch -p1
+%endif
 
 %build
 export SDL_CFLAGS="$(sdl-config --cflags)" SDL_LIBS="$(sdl-config --libs)"
@@ -345,6 +350,10 @@ mkdir -p $RPM_BUILD_ROOT%{codecdir}
 
 
 %changelog
+
+* Fri Aug 25 2017 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.2.8-9  
+- Automatic Mass Rebuild
+- ImageMagic patch
 
 * Mon Jul 31 2017 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.2.8-7  
 - Automatic Mass Rebuild

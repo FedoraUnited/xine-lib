@@ -1,0 +1,11 @@
+--- a/src/video_dec/image.c
++++ b/src/video_dec/image.c
+@@ -39,7 +39,7 @@
+ #define LOG
+ */
+ 
+-#include <wand/magick_wand.h>
++#include <MagickWand/MagickWand.h>
+ #ifdef PACKAGE_NAME
+ #undef PACKAGE_BUGREPORT
+ #undef PACKAGE_NAME
