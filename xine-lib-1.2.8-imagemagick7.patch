@@ -1,11 +1,11 @@
---- a/src/video_dec/image.c
-+++ b/src/video_dec/image.c
+--- a/src/video_dec/image.c	2017-02-21 05:13:13.000000000 -0600
++++ b/src/video_dec/image-new.c	2017-10-12 02:40:23.841778312 -0600
 @@ -39,7 +39,7 @@
  #define LOG
  */
  
 -#include <wand/magick_wand.h>
-+#include <MagickWand/MagickWand.h>
++#include <ImageMagick-6/wand/MagickWand.h>
  #ifdef PACKAGE_NAME
  #undef PACKAGE_BUGREPORT
  #undef PACKAGE_NAME

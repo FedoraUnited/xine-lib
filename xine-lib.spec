@@ -311,13 +311,13 @@ mkdir -p $RPM_BUILD_ROOT%{codecdir}
 %{_libdir}/xine/plugins/%{plugin_abi}/xineplug_vo_out_opengl.so
 %{_libdir}/xine/plugins/%{plugin_abi}/xineplug_vo_out_opengl2.so
 %{_libdir}/xine/plugins/%{plugin_abi}/xineplug_vo_out_raw.so
-# {_libdir}/xine/plugins/%{plugin_abi}/xineplug_vo_out_vaapi.so
+# {_libdir}/xine/plugins/{plugin_abi}/xineplug_vo_out_vaapi.so
 %{_libdir}/xine/plugins/%{plugin_abi}/xineplug_vo_out_vdpau.so
 %if %{have_vidix}
 %{_libdir}/xine/plugins/%{plugin_abi}/xineplug_vo_out_vidix.so
 %endif # vidix
-# {_libdir}/xine/plugins/%{plugin_abi}/xineplug_vo_out_xcbshm.so
-# {_libdir}/xine/plugins/%{plugin_abi}/xineplug_vo_out_xcbxv.so
+# {_libdir}/xine/plugins/{plugin_abi}/xineplug_vo_out_xcbshm.so
+# {_libdir}/xine/plugins/{plugin_abi}/xineplug_vo_out_xcbxv.so
 %{_libdir}/xine/plugins/%{plugin_abi}/xineplug_vo_out_xshm.so
 %{_libdir}/xine/plugins/%{plugin_abi}/xineplug_vo_out_xv.so
 %{_libdir}/xine/plugins/%{plugin_abi}/xineplug_vo_out_xvmc.so
