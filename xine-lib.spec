@@ -1,4 +1,4 @@
-%global         plugin_abi  2.6
+%global         plugin_abi  2.7
 %global         codecdir    %{_libdir}/codecs
 
 %ifarch %{ix86}
@@ -9,8 +9,8 @@
 
 Summary:        A multimedia engine
 Name:           xine-lib
-Version:        1.2.8
-Release:        11%{?dist}
+Version:        1.2.9
+Release:        7%{?dist}
 License:        GPLv2+
 URL:            http://www.xine-project.org/
 Source0:        http://downloads.sourceforge.net/xine/xine-lib-%{version}.tar.xz
@@ -293,13 +293,14 @@ mkdir -p $RPM_BUILD_ROOT%{codecdir}
 %{_libdir}/xine/plugins/%{plugin_abi}/xineplug_inp_cdda.so
 %{_libdir}/xine/plugins/%{plugin_abi}/xineplug_inp_dvb.so
 %{_libdir}/xine/plugins/%{plugin_abi}/xineplug_inp_dvd.so
-%{_libdir}/xine/plugins/%{plugin_abi}/xineplug_inp_http.so
+#{_libdir}/xine/plugins/{plugin_abi}/xineplug_inp_http.so
 %{_libdir}/xine/plugins/%{plugin_abi}/xineplug_inp_mms.so
-%{_libdir}/xine/plugins/%{plugin_abi}/xineplug_inp_net.so
-%{_libdir}/xine/plugins/%{plugin_abi}/xineplug_inp_pnm.so
+#{_libdir}/xine/plugins/{plugin_abi}/xineplug_inp_net.so
+%{_libdir}/xine/plugins/%{plugin_abi}/xineplug_inp_network.so
+#{_libdir}/xine/plugins/{plugin_abi}/xineplug_inp_pnm.so
 %{_libdir}/xine/plugins/%{plugin_abi}/xineplug_inp_pvr.so
 %{_libdir}/xine/plugins/%{plugin_abi}/xineplug_inp_rtp.so
-%{_libdir}/xine/plugins/%{plugin_abi}/xineplug_inp_rtsp.so
+#{_libdir}/xine/plugins/{plugin_abi}/xineplug_inp_rtsp.so
 %{_libdir}/xine/plugins/%{plugin_abi}/xineplug_inp_v4l2.so
 %{_libdir}/xine/plugins/%{plugin_abi}/xineplug_inp_vcd.so
 %{_libdir}/xine/plugins/%{plugin_abi}/xineplug_inp_vcdo.so
@@ -350,6 +351,9 @@ mkdir -p $RPM_BUILD_ROOT%{codecdir}
 
 
 %changelog
+
+* Fri Jan 12 2018 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.2.9-7  
+- Updated to 1.2.9
 
 * Wed Oct 18 2017 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.2.8-11  
 - Automatic Mass Rebuild
