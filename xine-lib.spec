@@ -10,7 +10,7 @@
 Summary:        A multimedia engine
 Name:           xine-lib
 Version:        1.2.9
-Release:        7%{?dist}
+Release:        8%{?dist}
 License:        GPLv2+
 URL:            http://www.xine-project.org/
 Source0:        http://downloads.sourceforge.net/xine/xine-lib-%{version}.tar.xz
@@ -351,6 +351,9 @@ mkdir -p $RPM_BUILD_ROOT%{codecdir}
 
 
 %changelog
+
+* Tue Feb 06 2018 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.2.9-8  
+- Rebuilt for libcdio
 
 * Fri Jan 12 2018 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.2.9-7  
 - Updated to 1.2.9
