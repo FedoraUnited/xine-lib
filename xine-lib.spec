@@ -10,7 +10,7 @@
 Summary:        A multimedia engine
 Name:           xine-lib
 Version:        1.2.9
-Release:        8%{?dist}
+Release:        9%{?dist}
 License:        GPLv2+
 URL:            http://www.xine-project.org/
 Source0:        http://downloads.sourceforge.net/xine/xine-lib-%{version}.tar.xz
@@ -49,7 +49,7 @@ BuildRequires:  libvpx-devel
 BuildRequires:  fontconfig-devel
 %endif # freetype
 # Audio
-BuildRequires:  ffmpeg-devel >= 0.4.9-0.22.20060804
+BuildRequires:  ffmpeg-devel >= 4.0
 BuildRequires:  a52dec-devel
 BuildRequires:  alsa-lib-devel >= 0.9.0
 BuildRequires:  faad2-devel
@@ -351,6 +351,9 @@ mkdir -p $RPM_BUILD_ROOT%{codecdir}
 
 
 %changelog
+
+* Thu Apr 26 2018 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.2.9-9  
+- Automatic Mass Rebuild
 
 * Tue Feb 06 2018 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.2.9-8  
 - Rebuilt for libcdio
