@@ -26,6 +26,7 @@ BuildRequires:  gawk
 BuildRequires:  sed
 BuildRequires:  gettext-devel
 # X11
+BuildRequires:	pkgconfig(gl)
 BuildRequires:  libX11-devel
 BuildRequires:  libXv-devel
 BuildRequires:  libXt-devel
