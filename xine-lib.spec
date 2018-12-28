@@ -7,14 +7,18 @@
     %global     have_vidix  0
 %endif # ix86
 
+# commit
+# from https://sourceforge.net/p/xine/xine-lib-1.2/ci/default/tree/
+%global _commit 4aaedd51dcfe7961359d71e5e37be8f466e6688b
+%global _shortcommit %(c=%{_commit}; echo ${c:0:7})
+
 Summary:        A multimedia engine
 Name:           xine-lib
 Version:        1.2.9
-Release:        11%{?dist}
+Release:        12%{?dist}
 License:        GPLv2+
 URL:            http://www.xine-project.org/
-Source0:        http://downloads.sourceforge.net/xine/xine-lib-%{version}.tar.xz
-Patch:		xine-lib-1.2.8-imagemagick7.patch
+Source0:        https://sourceforge.net/code-snapshots/hg/x/xi/xine/xine-lib-1.2/xine-xine-lib-1.2-%{_commit}.zip
 
 Provides:         xine-lib(plugin-abi) = %{plugin_abi}
 %{?_isa:Provides: xine-lib(plugin-abi)%{?_isa} = %{plugin_abi}}
@@ -46,6 +50,7 @@ BuildRequires:  aalib-devel >= 1.4
 BuildRequires:  libcaca-devel >= 0.99-0.5.beta14
 BuildRequires:  ImageMagick-devel >= 6.2.4.6-1
 BuildRequires:  libvpx-devel
+BuildRequires:	libaom-devel
 %if 0%{?_with_freetype:1}
 BuildRequires:  fontconfig-devel
 %endif # freetype
@@ -74,6 +79,10 @@ BuildRequires:  pkgconfig
 BuildRequires:  pkgconfig(libpulse)
 BuildRequires:  gtk2-devel
 BuildRequires:  libsmbclient-devel
+BuildRequires:  libssh2-devel
+BuildRequires:  libnfs-devel
+BuildRequires:  gnutls-devel
+BuildRequires:  openssl-devel
 
 BuildRequires:	autoconf automake libtool
 BuildRequires: 	esound-devel
@@ -102,16 +111,13 @@ This package contains extra plugins for %{name}:
   - SMB
   - SDL
   - AA-lib
-  - Libcaca
   - Image decoding
 
 
 %prep
-%setup -q
+%autosetup -n xine-%{name}-1.2-%{_commit}
 
-%if 0%{?fedora} >= 28
-%patch -p1
-%endif
+autoreconf -ivf
 
 %build
 export SDL_CFLAGS="$(sdl-config --cflags)" SDL_LIBS="$(sdl-config --libs)"
@@ -132,7 +138,7 @@ export SDL_CFLAGS="$(sdl-config --cflags)" SDL_LIBS="$(sdl-config --libs)"
 	        --enable-xinerama \
 	        --enable-xvmc \
 	        --enable-vdpau \
-	        --disable-vaapi \
+	        --enable-vaapi \
 	        --enable-dvb \
 	        --enable-samba \
 	        --enable-v4l2 \
@@ -164,7 +170,7 @@ export SDL_CFLAGS="$(sdl-config --cflags)" SDL_LIBS="$(sdl-config --libs)"
 	        --without-fusionsound \
 	        --with-jack \
 	        --with-pulseaudio \
-	        --with-caca \
+		--with-caca \
 	        --without-linux-path \
 	        --without-libstk \
 	        --with-sdl \
@@ -266,11 +272,11 @@ mkdir -p $RPM_BUILD_ROOT%{codecdir}
 %{_libdir}/xine/plugins/%{plugin_abi}/xineplug_decode_a52.so
 %{_libdir}/xine/plugins/%{plugin_abi}/xineplug_decode_dts.so
 %{_libdir}/xine/plugins/%{plugin_abi}/xineplug_decode_dvaudio.so
-%{_libdir}/xine/plugins/%{plugin_abi}/xineplug_decode_dxr3_spu.so
-%{_libdir}/xine/plugins/%{plugin_abi}/xineplug_decode_dxr3_video.so
+/usr/lib64/xine/plugins/%{plugin_abi}/xineplug_dxr3.so
 %{_libdir}/xine/plugins/%{plugin_abi}/xineplug_decode_faad.so
 %{_libdir}/xine/plugins/%{plugin_abi}/xineplug_decode_ff.so
 %{_libdir}/xine/plugins/%{plugin_abi}/xineplug_decode_gsm610.so
+%{_libdir}/xine/plugins/%{plugin_abi}/xineplug_decode_libaom.so
 %{_libdir}/xine/plugins/%{plugin_abi}/xineplug_decode_libjpeg.so
 %{_libdir}/xine/plugins/%{plugin_abi}/xineplug_decode_libvpx.so
 %{_libdir}/xine/plugins/%{plugin_abi}/xineplug_decode_lpcm.so
@@ -298,22 +304,26 @@ mkdir -p $RPM_BUILD_ROOT%{codecdir}
 %{_libdir}/xine/plugins/%{plugin_abi}/xineplug_inp_mms.so
 #{_libdir}/xine/plugins/{plugin_abi}/xineplug_inp_net.so
 %{_libdir}/xine/plugins/%{plugin_abi}/xineplug_inp_network.so
+%{_libdir}/xine/plugins/%{plugin_abi}/xineplug_inp_nfs.so
 #{_libdir}/xine/plugins/{plugin_abi}/xineplug_inp_pnm.so
 %{_libdir}/xine/plugins/%{plugin_abi}/xineplug_inp_pvr.so
 %{_libdir}/xine/plugins/%{plugin_abi}/xineplug_inp_rtp.so
+%{_libdir}/xine/plugins/%{plugin_abi}/xineplug_inp_ssh.so
 #{_libdir}/xine/plugins/{plugin_abi}/xineplug_inp_rtsp.so
 %{_libdir}/xine/plugins/%{plugin_abi}/xineplug_inp_v4l2.so
 %{_libdir}/xine/plugins/%{plugin_abi}/xineplug_inp_vcd.so
 %{_libdir}/xine/plugins/%{plugin_abi}/xineplug_inp_vcdo.so
 %{_libdir}/xine/plugins/%{plugin_abi}/xineplug_nsf.so
 %{_libdir}/xine/plugins/%{plugin_abi}/xineplug_sputext.so
+%{_libdir}/xine/plugins/%{plugin_abi}/xineplug_tls_gnutls.so
+%{_libdir}/xine/plugins/%{plugin_abi}/xineplug_tls_openssl.so
 %{_libdir}/xine/plugins/%{plugin_abi}/xineplug_vdr.so
-%{_libdir}/xine/plugins/%{plugin_abi}/xineplug_vo_out_dxr3.so
+#{_libdir}/xine/plugins/{plugin_abi}/xineplug_vo_out_dxr3.so
 %{_libdir}/xine/plugins/%{plugin_abi}/xineplug_vo_out_fb.so
 %{_libdir}/xine/plugins/%{plugin_abi}/xineplug_vo_out_opengl.so
 %{_libdir}/xine/plugins/%{plugin_abi}/xineplug_vo_out_opengl2.so
 %{_libdir}/xine/plugins/%{plugin_abi}/xineplug_vo_out_raw.so
-# {_libdir}/xine/plugins/{plugin_abi}/xineplug_vo_out_vaapi.so
+%{_libdir}/xine/plugins/%{plugin_abi}/xineplug_vo_out_vaapi.so
 %{_libdir}/xine/plugins/%{plugin_abi}/xineplug_vo_out_vdpau.so
 %if %{have_vidix}
 %{_libdir}/xine/plugins/%{plugin_abi}/xineplug_vo_out_vidix.so
@@ -352,6 +362,10 @@ mkdir -p $RPM_BUILD_ROOT%{codecdir}
 
 
 %changelog
+
+* Thu Dec 27 2018 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.2.9-12
+- We are using mercurial commits
+- Enabled libaom and others missed plugins
 
 * Thu Dec 06 2018 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.2.9-11  
 - Rebuilt for ffmpeg
