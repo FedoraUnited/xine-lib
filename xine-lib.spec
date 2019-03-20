@@ -9,13 +9,13 @@
 
 # commit
 # from https://sourceforge.net/p/xine/xine-lib-1.2/ci/default/tree/
-%global _commit 4aaedd51dcfe7961359d71e5e37be8f466e6688b
+%global _commit 237b4530d32dab134173c998ea2f5041bbb78b35
 %global _shortcommit %(c=%{_commit}; echo ${c:0:7})
 
 Summary:        A multimedia engine
 Name:           xine-lib
 Version:        1.2.9
-Release:        12%{?dist}
+Release:        13%{?dist}
 License:        GPLv2+
 URL:            http://www.xine-project.org/
 Source0:        https://sourceforge.net/code-snapshots/hg/x/xi/xine/xine-lib-1.2/xine-xine-lib-1.2-%{_commit}.zip
@@ -362,6 +362,9 @@ mkdir -p $RPM_BUILD_ROOT%{codecdir}
 
 
 %changelog
+
+* Tue Mar 19 2019 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.2.9-13
+- Updated to current commit
 
 * Thu Dec 27 2018 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.2.9-12
 - We are using mercurial commits
