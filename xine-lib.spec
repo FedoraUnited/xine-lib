@@ -9,13 +9,13 @@
 
 # commit
 # from https://sourceforge.net/p/xine/xine-lib-1.2/ci/default/tree/
-%global _commit 237b4530d32dab134173c998ea2f5041bbb78b35
+%global _commit b943cbd911eac1419736ba51a4ebe08eb49e948a
 %global _shortcommit %(c=%{_commit}; echo ${c:0:7})
 
 Summary:        A multimedia engine
 Name:           xine-lib
 Version:        1.2.9
-Release:        13%{?dist}
+Release:        14%{?dist}
 License:        GPLv2+
 URL:            http://www.xine-project.org/
 Source0:        https://sourceforge.net/code-snapshots/hg/x/xi/xine/xine-lib-1.2/xine-xine-lib-1.2-%{_commit}.zip
@@ -337,6 +337,8 @@ mkdir -p $RPM_BUILD_ROOT%{codecdir}
 %{_libdir}/xine/plugins/%{plugin_abi}/xineplug_wavpack.so
 %{_libdir}/xine/plugins/%{plugin_abi}/xineplug_xiph.so
 %{_libdir}/xine/plugins/%{plugin_abi}/xineplug_ao_out_esd.so
+%{_libdir}/xine/plugins/%{plugin_abi}/xineplug_decode_libpng.so
+%{_libdir}/xine/plugins/%{plugin_abi}/xineplug_vo_gl_glx.so
 
 %files extras
 %{_libdir}/xine/plugins/%{plugin_abi}/xineplug_ao_out_jack.so
@@ -362,6 +364,9 @@ mkdir -p $RPM_BUILD_ROOT%{codecdir}
 
 
 %changelog
+
+* Mon Sep 09 2019 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.2.9-14
+- Updated to current commit
 
 * Tue Mar 19 2019 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.2.9-13
 - Updated to current commit
