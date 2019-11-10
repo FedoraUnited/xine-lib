@@ -5,3 +5,4 @@ SPECS/*
 SRPMS/*
 xine-lib*.tar.xz
 .directory
+*.rpm

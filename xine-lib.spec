@@ -9,13 +9,13 @@
 
 # commit
 # from https://sourceforge.net/p/xine/xine-lib-1.2/ci/default/tree/
-%global _commit 0fe59f27ea3640c304eca70f9c44aca54cea590d
+%global _commit 8e5aeed33b2fdd46e457d19cd311a6f2cf32e002
 %global _shortcommit %(c=%{_commit}; echo ${c:0:7})
 
 Summary:        A multimedia engine
 Name:           xine-lib
 Version:        1.2.9
-Release:        15%{?dist}
+Release:        16%{?dist}
 License:        GPLv2+
 URL:            http://www.xine-project.org/
 Source0:        https://sourceforge.net/code-snapshots/hg/x/xi/xine/xine-lib-1.2/xine-xine-lib-1.2-%{_commit}.zip
@@ -58,7 +58,7 @@ BuildRequires:  fontconfig-devel
 BuildRequires:  ffmpeg-devel >= 4.1
 BuildRequires:  a52dec-devel
 BuildRequires:  alsa-lib-devel >= 0.9.0
-BuildRequires:  faad2-devel
+BuildRequires:  faad2-devel >= 2.9.1
 BuildRequires:  flac-devel
 BuildRequires:  jack-audio-connection-kit-devel
 BuildRequires:  libdca-devel
@@ -339,6 +339,9 @@ mkdir -p $RPM_BUILD_ROOT%{codecdir}
 %{_libdir}/xine/plugins/%{plugin_abi}/xineplug_ao_out_esd.so
 %{_libdir}/xine/plugins/%{plugin_abi}/xineplug_decode_libpng.so
 %{_libdir}/xine/plugins/%{plugin_abi}/xineplug_vo_gl_glx.so
+%{_libdir}/xine/plugins/%{plugin_abi}/xineplug_vo_gl_egl_wl.so
+%{_libdir}/xine/plugins/%{plugin_abi}/xineplug_vo_gl_egl_x11.so
+
 
 %files extras
 %{_libdir}/xine/plugins/%{plugin_abi}/xineplug_ao_out_jack.so
@@ -364,6 +367,9 @@ mkdir -p $RPM_BUILD_ROOT%{codecdir}
 
 
 %changelog
+
+* Fri Nov 08 2019 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.2.9-16
+- Rebuilt for faad2
 
 * Mon Sep 09 2019 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.2.9-15
 - Rebuilt for libnfs
