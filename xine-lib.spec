@@ -9,13 +9,13 @@
 
 # commit
 # from https://sourceforge.net/p/xine/xine-lib-1.2/ci/default/tree/
-%global _commit 0dd97aa23819e31b875aba24d554c0583ac6e0e1
+%global _commit 9aafe79ced814cb0a7176f6ec02981b906f907af
 %global _shortcommit %(c=%{_commit}; echo ${c:0:7})
 
 Summary:        A multimedia engine
 Name:           xine-lib
 Version:        1.2.9
-Release:        17%{?dist}
+Release:        18%{?dist}
 License:        GPLv2+
 URL:            http://www.xine-project.org/
 Source0:        https://sourceforge.net/code-snapshots/hg/x/xi/xine/xine-lib-1.2/xine-xine-lib-1.2-%{_commit}.zip
@@ -72,7 +72,7 @@ BuildRequires:  wavpack-devel
 BuildRequires:  libcdio-devel
 BuildRequires:  vcdimager-devel >= 0.7.23
 BuildRequires:  libdvdnav-devel
-BuildRequires:  libdvdread-devel
+BuildRequires:  libdvdread-devel >= 6.0.2
 BuildRequires:  libbluray-devel
 # Other
 BuildRequires:  pkgconfig
@@ -367,6 +367,10 @@ mkdir -p $RPM_BUILD_ROOT%{codecdir}
 
 
 %changelog
+
+* Tue Nov 19 2019 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.2.9-18
+- Rebuilt for libdvdread
+- Updated to current commit
 
 * Mon Nov 11 2019 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.2.9-17
 - Updated to current commit
