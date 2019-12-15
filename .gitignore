@@ -3,6 +3,6 @@ BUILDROOT/*
 RPMS/*
 SPECS/*
 SRPMS/*
-xine-lib*.tar.xz
+*.tar.xz
 .directory
 *.rpm
