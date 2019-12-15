@@ -1,4 +1,4 @@
-%global         plugin_abi  2.7
+%global         plugin_abi  2.8
 %global         codecdir    %{_libdir}/codecs
 
 %ifarch %{ix86}
@@ -9,7 +9,7 @@
 
 # commit
 # from https://sourceforge.net/p/xine/xine-lib-1.2/ci/default/tree/
-%global _commit bbf7642d93d30077432358c879ef7baae2fdd617
+%global _commit 1aaf3682b5b3a7414800d14bb6bd252270f5cdce
 %global _shortcommit %(c=%{_commit}; echo ${c:0:7})
 
 Summary:        A multimedia engine
@@ -370,6 +370,7 @@ mkdir -p $RPM_BUILD_ROOT%{codecdir}
 
 * Sat Dec 14 2019 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.2.10-7
 - Updated to 1.2.10-7
+- Abi bump
 
 * Tue Nov 19 2019 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.2.9-18
 - Rebuilt for libdvdread
