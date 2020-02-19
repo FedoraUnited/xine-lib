@@ -9,18 +9,18 @@
 
 # commit
 # from https://sourceforge.net/p/xine/xine-lib-1.2/ci/default/tree/
-%global _commit 1aaf3682b5b3a7414800d14bb6bd252270f5cdce
+%global _commit 346d0f517a9fe2a45f4537ff010612068f1dff22
 %global _shortcommit %(c=%{_commit}; echo ${c:0:7})
 
 Summary:        A multimedia engine
 Name:           xine-lib
 Version:        1.2.10
-Release:        7%{?dist}
+Release:        8%{?dist}
 License:        GPLv2+
 URL:            http://www.xine-project.org/
-Source0:        https://sourceforge.net/code-snapshots/hg/x/xi/xine/xine-lib-1.2/xine-xine-lib-1.2-%{_commit}.zip
+Source0:        https://github.com/UnitedRPMs/%{name}/releases/download/%{version}/xine-%{name}-1.2-%{_commit}.zip
 
-Provides:         xine-lib(plugin-abi) = %{plugin_abi}
+Provides:       xine-lib(plugin-abi) = %{plugin_abi}
 %{?_isa:Provides: xine-lib(plugin-abi)%{?_isa} = %{plugin_abi}}
 
 Obsoletes:      xine-lib-extras-freeworld < 1.1.21-10
@@ -367,6 +367,9 @@ mkdir -p $RPM_BUILD_ROOT%{codecdir}
 
 
 %changelog
+
+* Wed Feb 19 2020 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.2.10-8
+- Updated to corrent commit
 
 * Sat Dec 14 2019 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.2.10-7
 - Updated to 1.2.10-7
