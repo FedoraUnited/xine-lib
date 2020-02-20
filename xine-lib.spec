@@ -1,5 +1,7 @@
 %global         plugin_abi  2.8
 %global         codecdir    %{_libdir}/codecs
+# 
+%define _legacy_common_support 1
 
 %ifarch %{ix86}
     %global     have_vidix  1
