@@ -32,6 +32,7 @@ BuildRequires:  gawk
 BuildRequires:  sed
 BuildRequires:  gettext-devel
 # X11
+BuildRequires:	mesa-libEGL-devel
 BuildRequires:	pkgconfig(gl)
 BuildRequires:  libX11-devel
 BuildRequires:  libXv-devel
@@ -341,6 +342,7 @@ mkdir -p $RPM_BUILD_ROOT%{codecdir}
 %{_libdir}/xine/plugins/%{plugin_abi}/xineplug_ao_out_esd.so
 %{_libdir}/xine/plugins/%{plugin_abi}/xineplug_decode_libpng.so
 %{_libdir}/xine/plugins/%{plugin_abi}/xineplug_vo_gl_glx.so
+
 %{_libdir}/xine/plugins/%{plugin_abi}/xineplug_vo_gl_egl_wl.so
 %{_libdir}/xine/plugins/%{plugin_abi}/xineplug_vo_gl_egl_x11.so
 
