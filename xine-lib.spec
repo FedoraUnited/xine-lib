@@ -11,13 +11,13 @@
 
 # commit
 # from https://sourceforge.net/p/xine/xine-lib-1.2/ci/default/tree/
-%global _commit 8702ea095a96046d9fcd9635511b9522dd73887d
+%global _commit 14cf1cd389fddc4d947cb5e1ed88e6af3f7ba990
 %global _shortcommit %(c=%{_commit}; echo ${c:0:7})
 
 Summary:        A multimedia engine
 Name:           xine-lib
 Version:        1.2.10
-Release:        9%{?dist}
+Release:        10%{?dist}
 License:        GPLv2+
 URL:            http://www.xine-project.org/
 Source0:        https://github.com/UnitedRPMs/%{name}/releases/download/%{version}/xine-%{name}-1.2-%{_commit}.zip
@@ -371,6 +371,9 @@ mkdir -p $RPM_BUILD_ROOT%{codecdir}
 
 
 %changelog
+
+* Sun May 24 2020 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.2.10-10
+- Updated to current commit
 
 * Thu Apr 09 2020 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.2.10-9
 - Updated to current commit

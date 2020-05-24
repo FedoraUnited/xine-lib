@@ -6,3 +6,4 @@ SRPMS/*
 *.tar.xz
 .directory
 *.rpm
+*.zip
