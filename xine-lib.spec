@@ -17,7 +17,7 @@
 Summary:        A multimedia engine
 Name:           xine-lib
 Version:        1.2.10
-Release:        10%{?dist}
+Release:        11%{?dist}
 License:        GPLv2+
 URL:            http://www.xine-project.org/
 Source0:        https://github.com/UnitedRPMs/%{name}/releases/download/%{version}/xine-%{name}-1.2-%{_commit}.zip
@@ -58,7 +58,7 @@ BuildRequires:	libaom-devel
 BuildRequires:  fontconfig-devel
 %endif # freetype
 # Audio
-BuildRequires:  ffmpeg-devel >= 4.1
+BuildRequires:  ffmpeg-devel >= 4.3
 BuildRequires:  a52dec-devel
 BuildRequires:  alsa-lib-devel >= 0.9.0
 BuildRequires:  faad2-devel >= 2.9.1
@@ -371,6 +371,9 @@ mkdir -p $RPM_BUILD_ROOT%{codecdir}
 
 
 %changelog
+
+* Tue Jun 23 2020 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.2.10-11
+- Rebuilt for ffmpeg
 
 * Sun May 24 2020 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.2.10-10
 - Updated to current commit
