@@ -17,7 +17,7 @@
 Summary:        A multimedia engine
 Name:           xine-lib
 Version:        1.2.10
-Release:        12%{?dist}
+Release:        13%{?dist}
 License:        GPLv2+
 URL:            http://www.xine-project.org/
 Source0:        https://github.com/UnitedRPMs/%{name}/releases/download/%{version}/xine-%{name}-1.2-%{_commit}.zip
@@ -53,6 +53,7 @@ BuildRequires:  aalib-devel >= 1.4
 BuildRequires:  libcaca-devel >= 0.99-0.5.beta14
 BuildRequires:  ImageMagick-devel >= 6.2.4.6-1
 BuildRequires:  libvpx-devel
+BuildRequires:  libdav1d-devel
 %if 0%{?fedora} >= 33
 BuildRequires:  libaom-devel >= 2.0.0
 %else
@@ -78,8 +79,13 @@ BuildRequires:  wavpack-devel
 # CDs / DVDs
 BuildRequires:  libcdio-devel
 BuildRequires:  vcdimager-devel >= 0.7.23
+%if 0%{?fedora} >= 34
+BuildRequires:  libdvdread-devel >= 6.1.1
+BuildRequires:  libdvdnav-devel >= 6.1.0
+%else
+BuildRequires:  libdvdread-devel 
 BuildRequires:  libdvdnav-devel
-BuildRequires:  libdvdread-devel >= 6.0.2
+%endif
 BuildRequires:  libbluray-devel
 # Other
 BuildRequires:  pkgconfig
@@ -375,6 +381,9 @@ mkdir -p $RPM_BUILD_ROOT%{codecdir}
 
 
 %changelog
+
+* Sun Nov 01 2020 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.2.10-13
+- Rebuilt for libdvdread
 
 * Wed Jul 08 2020 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.2.10-12
 - Rebuilt for aom
