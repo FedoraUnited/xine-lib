@@ -17,7 +17,7 @@
 Summary:        A multimedia engine
 Name:           xine-lib
 Version:        1.2.10
-Release:        13%{?dist}
+Release:        14%{?dist}
 License:        GPLv2+
 URL:            http://www.xine-project.org/
 Source0:        https://github.com/UnitedRPMs/%{name}/releases/download/%{version}/xine-%{name}-1.2-%{_commit}.zip
@@ -382,6 +382,9 @@ mkdir -p $RPM_BUILD_ROOT%{codecdir}
 
 
 %changelog
+
+* Wed Nov 04 2020 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.2.10-14
+- Rebuilt 
 
 * Sun Nov 01 2020 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.2.10-13
 - Rebuilt for libdvdread
