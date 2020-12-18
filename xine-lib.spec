@@ -17,7 +17,7 @@
 Summary:        A multimedia engine
 Name:           xine-lib
 Version:        1.2.10
-Release:        14%{?dist}
+Release:        16%{?dist}
 License:        GPLv2+
 URL:            http://www.xine-project.org/
 Source0:        https://github.com/UnitedRPMs/%{name}/releases/download/%{version}/xine-%{name}-1.2-%{_commit}.zip
@@ -53,7 +53,11 @@ BuildRequires:  aalib-devel >= 1.4
 BuildRequires:  libcaca-devel >= 0.99-0.5.beta14
 BuildRequires:  ImageMagick-devel >= 6.2.4.6-1
 BuildRequires:  libvpx-devel
-BuildRequires:  libdav1d-devel
+%if 0%{?fedora} >= 34
+BuildRequires:	libdav1d-devel >= 0.8.0
+%else
+BuildRequires:	libdav1d-devel >= 0.5.2
+%endif
 %if 0%{?fedora} >= 33
 BuildRequires:  libaom-devel >= 2.0.0
 %else
@@ -382,6 +386,9 @@ mkdir -p $RPM_BUILD_ROOT%{codecdir}
 
 
 %changelog
+
+* Tue Dec 15 2020 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.2.10-16
+- Rebuilt for dav1d
 
 * Wed Nov 04 2020 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.2.10-14
 - Rebuilt 
