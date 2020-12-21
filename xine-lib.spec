@@ -1,4 +1,4 @@
-%global         plugin_abi  2.8
+%global         plugin_abi  2.9
 %global         codecdir    %{_libdir}/codecs
 # 
 %define _legacy_common_support 1
@@ -361,6 +361,8 @@ mkdir -p $RPM_BUILD_ROOT%{codecdir}
 %{_libdir}/xine/plugins/%{plugin_abi}/xineplug_vo_gl_egl_x11.so
 
 %{_libdir}/xine/plugins/%{plugin_abi}/xineplug_decode_dav1d.so
+
+%{_libdir}/xine/plugins/%{plugin_abi}/xineplug_decode_to_spdif.so
 
 %files extras
 %{_libdir}/xine/plugins/%{plugin_abi}/xineplug_ao_out_jack.so
